@@ -9,14 +9,35 @@ import '../utility/imagewidget.dart';
 import '../utility/mytext.dart';
 
 
-class SignUp extends StatelessWidget {
+class SignUp extends StatefulWidget {
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
   // const SignUp({super.key});
   TextEditingController email= TextEditingController();
+
   TextEditingController password= TextEditingController();
+
   TextEditingController fullname= TextEditingController();
+
   final auth= FirebaseAuth.instance;
+
 register() async{
- var response= await auth.createUserWithEmailAndPassword(email: email.text, password: password.text);
+  
+try{
+  setState(() {
+    
+  });
+   
+  
+   var response= await auth.createUserWithEmailAndPassword(email: email.text, password: password.text);
+
+}catch(e){
+  print(e);
+ 
+}
 
 }
 
@@ -49,6 +70,7 @@ register() async{
                   MyTextField(
                     HintText: 'Email ID',
                     PrefixIcon: Icon(
+                      
                       Icons.alternate_email_outlined,
                     ),
                   ),
@@ -73,14 +95,18 @@ register() async{
                   SizedBox(
                     height: 40,
                   ),
+                  // GestureDetector(
+                  //   onTap: () => register(),
+
+                  // ),
                   GestureDetector(
                     onTap: () => register(),
-
-                  ),
-                  MyButton(
                     
-                    btnText: 'Sign Up',
-                    
+                    child: MyButton(
+                      
+                      btnText: 'Sign Up',
+                      
+                    ),
                   ),
                 ],
               ),
